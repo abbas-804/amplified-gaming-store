@@ -41,7 +41,7 @@
     --line:rgba(243,236,223,0.10);
   }
   *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth; overflow-x:hidden; width:100%;}
   @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;} }
 
   body{
@@ -101,6 +101,20 @@
     border:none; cursor:pointer;
   }
   .cta-btn:hover{filter:brightness(1.08);}
+
+  .header-actions{display:flex; align-items:center; gap:10px;}
+  .icon-btn{
+    position:relative; width:40px; height:40px; border-radius:9px;
+    background:var(--panel); border:1px solid var(--line); color:var(--paper);
+    font-size:17px; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  }
+  .icon-btn:hover{border-color:var(--gold);}
+  .cart-badge{
+    position:absolute; top:-6px; right:-6px; min-width:18px; height:18px; padding:0 4px;
+    border-radius:999px; background:linear-gradient(135deg,var(--ember),var(--gold));
+    color:var(--ink); font-family:'JetBrains Mono',monospace; font-size:10.5px; font-weight:800;
+    display:flex; align-items:center; justify-content:center;
+  }
 
   /* ---------- hero ---------- */
   .hero{
@@ -162,7 +176,7 @@
 
   /* ---------- marquee shelf ---------- */
   .shelf-wrap{
-    position:relative; background:var(--wood-dark);
+    position:relative; background:var(--wood-dark); overflow:hidden;
     border-top:1px solid var(--line); border-bottom:1px solid var(--line);
     padding:14px 0;
     box-shadow: inset 0 12px 24px -12px rgba(168,85,224,0.25), inset 0 -12px 24px -12px rgba(168,85,224,0.25);
@@ -339,7 +353,7 @@
     display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
     text-align:center; padding:0 20px;
     transition:transform 0.25s ease, filter 0.25s ease;
-    position:relative;
+    position:relative; text-decoration:none; cursor:pointer;
   }
   .hex-item:nth-child(even){ margin-top:32px; }
   .hex-item:hover{ transform:translateY(-6px) scale(1.03); }
@@ -385,6 +399,104 @@
   .review-name{font-size:13.5px; font-weight:700;}
   .review-meta{font-size:11.5px; color:var(--paper-dim); font-family:'JetBrains Mono',monospace;}
 
+  /* ---------- shop view (category / search) ---------- */
+  #shopView{ display:none; padding-top:20px; min-height:70vh; }
+  .shop-head{ padding:0 clamp(18px,5vw,64px) 10px; }
+  .back-link{ display:inline-flex; gap:6px; align-items:center; color:var(--paper-dim); text-decoration:none; font-size:13px; margin-bottom:14px; }
+  .back-link:hover{ color:var(--gold); }
+  .search-bar-wrap{ padding:6px clamp(18px,5vw,64px) 0; }
+  .search-input{
+    width:100%; padding:14px 18px; border-radius:10px; background:var(--panel);
+    border:1px solid var(--line); color:var(--paper); font-size:15px; font-family:'Work Sans',sans-serif;
+  }
+  .search-input:focus-visible{ outline:2px solid var(--gold); }
+  .shop-layout{
+    display:grid; grid-template-columns:220px 1fr; gap:28px;
+    padding:20px clamp(18px,5vw,64px) 90px; align-items:start;
+  }
+  @media (max-width:760px){ .shop-layout{ grid-template-columns:1fr; } }
+  .filter-panel{
+    background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:20px;
+    position:sticky; top:96px;
+  }
+  .filter-panel h4{ margin:0 0 14px; font-family:'Anton',sans-serif; text-transform:uppercase; font-size:14px; color:var(--gold); }
+  .filter-row{ margin-bottom:16px; }
+  .filter-row label{ font-size:11.5px; color:var(--paper-dim); display:block; margin-bottom:6px; font-family:'JetBrains Mono',monospace; }
+  .filter-row input, .filter-row select{
+    width:100%; background:var(--ink); border:1px solid var(--line); color:var(--paper);
+    padding:9px 10px; border-radius:8px; font-family:'Work Sans',sans-serif; font-size:13px;
+  }
+  .product-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:18px; }
+  .product-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:14px; overflow:hidden;
+    display:flex; flex-direction:column;
+  }
+  .product-media{
+    aspect-ratio:1; background:var(--wood-dark); display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  .product-media img{ width:100%; height:100%; object-fit:contain; transition:transform 0.3s ease; }
+  .product-media .ic-fallback{ font-size:52px; transition:transform 0.3s ease; display:block; }
+  .product-card:hover .product-media img,
+  .product-card:hover .product-media .ic-fallback{ transform:scale(1.1); }
+  .product-info{ padding:14px 16px 16px; display:flex; flex-direction:column; gap:6px; flex:1; }
+  .product-name{ font-family:'Anton',sans-serif; text-transform:uppercase; font-size:14px; letter-spacing:0.01em; }
+  .product-desc{ font-size:12px; color:var(--paper-dim); line-height:1.5; flex:1; }
+  .product-price{ font-family:'JetBrains Mono',monospace; color:var(--gold); font-weight:700; font-size:14.5px; }
+  .add-cart-btn, .contact-btn{
+    margin-top:6px; border:none; padding:10px; border-radius:8px; font-weight:800; font-size:12px;
+    cursor:pointer; text-align:center; text-decoration:none; font-family:'Work Sans',sans-serif;
+  }
+  .add-cart-btn{ background:linear-gradient(135deg,var(--ember),var(--gold)); color:var(--ink); }
+  .add-cart-btn:hover{ filter:brightness(1.08); }
+  .contact-btn{ border:1.5px solid rgba(243,236,223,0.3); background:transparent; color:var(--paper); }
+  .contact-btn:hover{ border-color:var(--gold); color:var(--gold); }
+  .empty-state{ color:var(--paper-dim); font-size:14px; padding:40px 10px; text-align:center; grid-column:1/-1; }
+
+  /* ---------- cart drawer ---------- */
+  .cart-overlay{
+    position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:60;
+    opacity:0; pointer-events:none; transition:opacity 0.25s ease;
+  }
+  .cart-overlay.active{ opacity:1; pointer-events:auto; }
+  .cart-drawer{
+    position:fixed; top:0; right:-380px; width:360px; max-width:88vw; height:100%;
+    background:var(--panel); border-left:1px solid var(--line); z-index:61;
+    transition:right 0.3s ease; display:flex; flex-direction:column;
+  }
+  .cart-drawer.active{ right:0; }
+  .cart-head{
+    padding:20px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:center;
+  }
+  .cart-head h4{ margin:0; font-family:'Anton',sans-serif; text-transform:uppercase; font-size:16px; }
+  .cart-close{ background:none; border:none; color:var(--paper-dim); font-size:20px; cursor:pointer; }
+  .cart-items{ flex:1; overflow-y:auto; padding:16px 20px; display:flex; flex-direction:column; gap:16px; }
+  .cart-item{ display:flex; gap:12px; align-items:flex-start; }
+  .cart-item-media{
+    width:52px; height:52px; border-radius:8px; background:var(--wood-dark); flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; overflow:hidden;
+  }
+  .cart-item-media img{ width:100%; height:100%; object-fit:contain; }
+  .cart-item-info{ flex:1; }
+  .cart-item-name{ font-size:12.5px; font-weight:700; }
+  .cart-item-price{ font-size:11.5px; color:var(--gold); font-family:'JetBrains Mono',monospace; margin-top:2px; }
+  .qty-controls{ display:flex; align-items:center; gap:8px; margin-top:6px; }
+  .qty-btn{
+    width:22px; height:22px; border-radius:6px; border:1px solid var(--line); background:var(--ink);
+    color:var(--paper); cursor:pointer; font-size:13px; line-height:1;
+  }
+  .qty-controls span{ font-size:12.5px; font-family:'JetBrains Mono',monospace; }
+  .remove-btn{
+    background:none; border:none; color:var(--paper-dim); font-size:10.5px; text-decoration:underline;
+    cursor:pointer; margin-top:6px; padding:0;
+  }
+  .cart-foot{ padding:18px 20px; border-top:1px solid var(--line); }
+  .cart-total-row{
+    display:flex; justify-content:space-between; margin-bottom:14px; font-family:'Anton',sans-serif;
+    text-transform:uppercase; font-size:15px;
+  }
+  .checkout-btn{ display:block; width:100%; box-sizing:border-box; }
+
   .wa-float{
     position:fixed; right:20px; bottom:20px; z-index:50;
     width:56px; height:56px; border-radius:50%;
@@ -414,8 +526,29 @@
     <a href="#reviews">Reviews</a>
     <a href="#visit">Visit Us</a>
   </nav>
-  <a class="cta-btn" href="https://wa.me/923340518175" target="_blank" rel="noopener">DM for Quote →</a>
+  <div class="header-actions">
+    <button class="icon-btn" id="searchToggle" aria-label="Search products">🔍</button>
+    <button class="icon-btn cart-btn" id="cartToggle" aria-label="View cart">
+      🛒<span class="cart-badge" id="cartBadge">0</span>
+    </button>
+    <a class="cta-btn" href="https://wa.me/923340518175" target="_blank" rel="noopener">DM for Quote →</a>
+  </div>
 </header>
+
+<div id="shopView"></div>
+
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-head">
+    <h4>Your Cart</h4>
+    <button class="cart-close" id="cartClose" aria-label="Close cart">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot">
+    <div class="cart-total-row"><span>Total</span><span id="cartTotal">Rs. 0</span></div>
+    <a class="cta-btn checkout-btn" id="checkoutBtn" href="https://wa.me/923340518175" target="_blank" rel="noopener">Checkout on WhatsApp →</a>
+  </div>
+</div>
 
 <main id="top">
 
@@ -512,22 +645,23 @@
       <p>All the core components for a custom rig — genuine parts, in stock, with straight answers on what fits your budget.</p>
     </div>
     <div class="hex-grid reveal">
-      <div class="hex-item gold"><span class="hx-ic">🎮</span><span class="hx-label">Graphics Cards</span><span class="hx-count">40+ Products</span></div>
-      <div class="hex-item glow"><span class="hx-ic">🧠</span><span class="hx-label">Processors</span><span class="hx-count">25+ Products</span></div>
-      <div class="hex-item gold"><span class="hx-ic">🔗</span><span class="hx-label">Motherboards</span><span class="hx-count">20+ Products</span></div>
-      <div class="hex-item glow"><span class="hx-ic">💾</span><span class="hx-label">RAM</span><span class="hx-count">35+ Products</span></div>
-      <div class="hex-item gold"><span class="hx-ic">🗄️</span><span class="hx-label">Storage / SSD</span><span class="hx-count">18+ Products</span></div>
-      <div class="hex-item glow"><span class="hx-ic">🔌</span><span class="hx-label">Power Supplies</span><span class="hx-count">12+ Products</span></div>
-      <div class="hex-item gold"><span class="hx-ic">📦</span><span class="hx-label">Gaming Cases</span><span class="hx-count">15+ Products</span></div>
-      <div class="hex-item glow"><span class="hx-ic">❄️</span><span class="hx-label">CPU Coolers</span><span class="hx-count">14+ Products</span></div>
-      <div class="hex-item gold"><span class="hx-ic">🌀</span><span class="hx-label">ARGB Fans</span><span class="hx-count">10+ Products</span></div>
-      <div class="hex-item glow"><span class="hx-ic">🖥️</span><span class="hx-label">Monitors</span><span class="hx-count">12+ Products</span></div>
-      <div class="hex-item gold"><span class="hx-ic">⌨️</span><span class="hx-label">Keyboards</span><span class="hx-count">8+ Products</span></div>
-      <div class="hex-item glow"><span class="hx-ic">🖱️</span><span class="hx-label">Mouse</span><span class="hx-count">10+ Products</span></div>
-      <div class="hex-item gold"><span class="hx-ic">🎧</span><span class="hx-label">Headphones</span><span class="hx-count">9+ Products</span></div>
-      <div class="hex-item glow"><span class="hx-ic">🪑</span><span class="hx-label">Gaming Chairs</span><span class="hx-count">6+ Products</span></div>
-      <div class="hex-item gold"><span class="hx-ic">📷</span><span class="hx-label">Webcams</span><span class="hx-count">4+ Products</span></div>
-      <div class="hex-item glow"><span class="hx-ic">🔊</span><span class="hx-label">Speakers</span><span class="hx-count">5+ Products</span></div>
+      <a class="hex-item gold" href="#/category/gpu"><span class="hx-ic">🎮</span><span class="hx-label">Graphics Cards</span><span class="hx-count" data-count="gpu">40+ Products</span></a>
+      <a class="hex-item glow" href="#/category/cpu"><span class="hx-ic">🧠</span><span class="hx-label">Processors</span><span class="hx-count" data-count="cpu">3 Products</span></a>
+      <a class="hex-item gold" href="#/category/motherboard"><span class="hx-ic">🔗</span><span class="hx-label">Motherboards</span><span class="hx-count" data-count="motherboard">20+ Products</span></a>
+      <a class="hex-item glow" href="#/category/ram"><span class="hx-ic">💾</span><span class="hx-label">RAM</span><span class="hx-count" data-count="ram">35+ Products</span></a>
+      <a class="hex-item gold" href="#/category/storage"><span class="hx-ic">🗄️</span><span class="hx-label">Storage / SSD</span><span class="hx-count" data-count="storage">18+ Products</span></a>
+      <a class="hex-item glow" href="#/category/psu"><span class="hx-ic">🔌</span><span class="hx-label">Power Supplies</span><span class="hx-count" data-count="psu">12+ Products</span></a>
+      <a class="hex-item gold" href="#/category/case"><span class="hx-ic">📦</span><span class="hx-label">Gaming Cases</span><span class="hx-count" data-count="case">15+ Products</span></a>
+      <a class="hex-item glow" href="#/category/cooler"><span class="hx-ic">❄️</span><span class="hx-label">CPU Coolers</span><span class="hx-count" data-count="cooler">14+ Products</span></a>
+      <a class="hex-item gold" href="#/category/fans"><span class="hx-ic">🌀</span><span class="hx-label">ARGB Fans</span><span class="hx-count" data-count="fans">10+ Products</span></a>
+      <a class="hex-item glow" href="#/category/monitor"><span class="hx-ic">🖥️</span><span class="hx-label">Monitors</span><span class="hx-count" data-count="monitor">12+ Products</span></a>
+      <a class="hex-item gold" href="#/category/keyboard"><span class="hx-ic">⌨️</span><span class="hx-label">Keyboards</span><span class="hx-count" data-count="keyboard">8+ Products</span></a>
+      <a class="hex-item glow" href="#/category/mouse"><span class="hx-ic">🖱️</span><span class="hx-label">Mouse</span><span class="hx-count" data-count="mouse">10+ Products</span></a>
+      <a class="hex-item gold" href="#/category/headphones"><span class="hx-ic">🎧</span><span class="hx-label">Headphones</span><span class="hx-count" data-count="headphones">9+ Products</span></a>
+      <a class="hex-item glow" href="#/category/chair"><span class="hx-ic">🪑</span><span class="hx-label">Gaming Chairs</span><span class="hx-count" data-count="chair">6+ Products</span></a>
+      <a class="hex-item gold" href="#/category/webcam"><span class="hx-ic">📷</span><span class="hx-label">Webcams</span><span class="hx-count" data-count="webcam">4+ Products</span></a>
+      <a class="hex-item glow" href="#/category/speakers"><span class="hx-ic">🔊</span><span class="hx-label">Speakers</span><span class="hx-count" data-count="speakers">5+ Products</span></a>
+      <a class="hex-item gold" href="#/category/consoles"><span class="hx-ic">🕹️</span><span class="hx-label">Consoles</span><span class="hx-count" data-count="consoles">3 Products</span></a>
     </div>
   </section>
     <div class="section-head reveal">
@@ -655,6 +789,7 @@
 <a class="wa-float" href="https://wa.me/923340518175" target="_blank" rel="noopener" aria-label="Message on WhatsApp">💬</a>
 
 <script>
+  /* ---------- scroll reveal (home page) ---------- */
   const revealEls = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -665,6 +800,277 @@
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   revealEls.forEach(el => io.observe(el));
+
+  /* ---------- product data ---------- */
+  const WA_NUMBER = '923340518175';
+
+  const CATEGORY_META = {
+    gpu:{label:'Graphics Cards', icon:'🎮'},
+    cpu:{label:'Processors', icon:'🧠'},
+    motherboard:{label:'Motherboards', icon:'🔗'},
+    ram:{label:'RAM', icon:'💾'},
+    storage:{label:'Storage / SSD', icon:'🗄️'},
+    psu:{label:'Power Supplies', icon:'🔌'},
+    case:{label:'Gaming Cases', icon:'📦'},
+    cooler:{label:'CPU Coolers', icon:'❄️'},
+    fans:{label:'ARGB Fans', icon:'🌀'},
+    monitor:{label:'Monitors', icon:'🖥️'},
+    keyboard:{label:'Keyboards', icon:'⌨️'},
+    mouse:{label:'Mouse', icon:'🖱️'},
+    headphones:{label:'Headphones', icon:'🎧'},
+    chair:{label:'Gaming Chairs', icon:'🪑'},
+    webcam:{label:'Webcams', icon:'📷'},
+    speakers:{label:'Speakers', icon:'🔊'},
+    consoles:{label:'Consoles', icon:'🕹️'}
+  };
+
+  // Add new products here as they're confirmed — cat must match a key above.
+  // price:null items show a "DM for Price" button instead of Add to Cart.
+  const PRODUCTS = [
+    { id:'cpu-8700f', cat:'cpu', name:'AMD Ryzen 7 8700F', desc:'8-core / 16-thread desktop processor — strong pick for high-end gaming and multitasking builds.', price:50000, img:'assets/cpu-ryzen7-8700f.webp' },
+    { id:'cpu-3700x', cat:'cpu', name:'AMD Ryzen 7 3700X', desc:'8-core / 16-thread processor — reliable performer for solid 1080p/1440p gaming rigs.', price:30000, img:'assets/cpu-ryzen7-3700x.webp' },
+    { id:'cpu-3500x', cat:'cpu', name:'AMD Ryzen 5 3500X', desc:'6-core processor — great value pick for budget and mid-range gaming builds.', price:15500, img:'assets/cpu-ryzen5-3500x.webp' },
+    { id:'console-ps5', cat:'consoles', name:'PlayStation 5', desc:'Latest-gen Sony console — ask in-store for current bundle and controller options.', price:null, img:null, icon:'🎮' },
+    { id:'console-ps4', cat:'consoles', name:'PlayStation 4', desc:'Reliable last-gen console with a huge game library at a lower price point.', price:null, img:null, icon:'🎮' },
+    { id:'console-xbox', cat:'consoles', name:'Xbox Series S', desc:'Compact next-gen Xbox console — ask about current stock and pricing.', price:null, img:null, icon:'🕹️' }
+  ];
+
+  function money(n){ return 'Rs. ' + Number(n).toLocaleString('en-PK'); }
+
+  /* ---------- cart state (in-memory only, resets on page reload) ---------- */
+  let cart = [];
+
+  function addToCart(id){
+    const existing = cart.find(c => c.id === id);
+    if (existing) existing.qty++; else cart.push({ id, qty:1 });
+    updateCartUI();
+    openCart();
+  }
+  function removeFromCart(id){ cart = cart.filter(c => c.id !== id); updateCartUI(); }
+  function changeQty(id, delta){
+    const item = cart.find(c => c.id === id);
+    if (!item) return;
+    item.qty += delta;
+    if (item.qty <= 0) cart = cart.filter(c => c.id !== id);
+    updateCartUI();
+  }
+  function cartTotal(){
+    return cart.reduce((sum,c) => {
+      const p = PRODUCTS.find(x => x.id === c.id);
+      return sum + (p && p.price ? p.price : 0) * c.qty;
+    }, 0);
+  }
+  function updateCartUI(){
+    const count = cart.reduce((s,c) => s + c.qty, 0);
+    const badge = document.getElementById('cartBadge');
+    if (badge) badge.textContent = count;
+
+    const wrap = document.getElementById('cartItems');
+    if (wrap){
+      wrap.innerHTML = cart.length ? cart.map(c => {
+        const p = PRODUCTS.find(x => x.id === c.id);
+        if (!p) return '';
+        const media = p.img
+          ? `<img src="${p.img}" alt="${p.name}">`
+          : `<span class="ic-fallback" style="font-size:22px;">${p.icon || '🎮'}</span>`;
+        return `
+        <div class="cart-item">
+          <div class="cart-item-media">${media}</div>
+          <div class="cart-item-info">
+            <div class="cart-item-name">${p.name}</div>
+            <div class="cart-item-price">${money(p.price)} × ${c.qty}</div>
+            <div class="qty-controls">
+              <button class="qty-btn" data-qty-minus="${p.id}">−</button>
+              <span>${c.qty}</span>
+              <button class="qty-btn" data-qty-plus="${p.id}">+</button>
+            </div>
+            <button class="remove-btn" data-remove="${p.id}">Remove</button>
+          </div>
+        </div>`;
+      }).join('') : `<div class="empty-state">Your cart is empty.</div>`;
+    }
+
+    const totalEl = document.getElementById('cartTotal');
+    if (totalEl) totalEl.textContent = money(cartTotal());
+
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    if (checkoutBtn){
+      if (cart.length){
+        const lines = cart.map(c => {
+          const p = PRODUCTS.find(x => x.id === c.id);
+          return `${c.qty}x ${p.name} - ${money(p.price)}`;
+        }).join('\n');
+        const msg = encodeURIComponent(`Hi! I'd like to order:\n${lines}\n\nTotal: ${money(cartTotal())}`);
+        checkoutBtn.href = `https://wa.me/${WA_NUMBER}?text=${msg}`;
+      } else {
+        checkoutBtn.href = `https://wa.me/${WA_NUMBER}`;
+      }
+    }
+  }
+  function openCart(){
+    document.getElementById('cartOverlay').classList.add('active');
+    document.getElementById('cartDrawer').classList.add('active');
+  }
+  function closeCart(){
+    document.getElementById('cartOverlay').classList.remove('active');
+    document.getElementById('cartDrawer').classList.remove('active');
+  }
+
+  /* ---------- product card + filter rendering ---------- */
+  function productCardHTML(p){
+    const media = p.img
+      ? `<img src="${p.img}" alt="${p.name}" loading="lazy">`
+      : `<span class="ic-fallback">${p.icon || '🎮'}</span>`;
+    const action = p.price
+      ? `<button class="add-cart-btn" data-add="${p.id}">Add to Cart</button>`
+      : `<a class="contact-btn" href="https://wa.me/${WA_NUMBER}" target="_blank" rel="noopener">DM for Price</a>`;
+    return `
+      <div class="product-card">
+        <div class="product-media">${media}</div>
+        <div class="product-info">
+          <div class="product-name">${p.name}</div>
+          <div class="product-desc">${p.desc}</div>
+          ${p.price ? `<div class="product-price">${money(p.price)}</div>` : ''}
+          ${action}
+        </div>
+      </div>`;
+  }
+
+  function filterPanelHTML(){
+    return `
+      <div class="filter-panel">
+        <h4>Filter</h4>
+        <div class="filter-row">
+          <label>Min Price (Rs.)</label>
+          <input type="number" id="filterMin" placeholder="0" min="0">
+        </div>
+        <div class="filter-row">
+          <label>Max Price (Rs.)</label>
+          <input type="number" id="filterMax" placeholder="Any" min="0">
+        </div>
+        <div class="filter-row">
+          <label>Sort By</label>
+          <select id="filterSort">
+            <option value="">Default</option>
+            <option value="low">Price: Low to High</option>
+            <option value="high">Price: High to Low</option>
+          </select>
+        </div>
+      </div>`;
+  }
+
+  function applyFilters(items){
+    const min = parseFloat(document.getElementById('filterMin')?.value);
+    const max = parseFloat(document.getElementById('filterMax')?.value);
+    const sort = document.getElementById('filterSort')?.value;
+    let out = items.filter(p => {
+      if (p.price == null) return true;
+      if (!isNaN(min) && p.price < min) return false;
+      if (!isNaN(max) && p.price > max) return false;
+      return true;
+    });
+    if (sort === 'low') out = out.slice().sort((a,b) => (a.price||0) - (b.price||0));
+    if (sort === 'high') out = out.slice().sort((a,b) => (b.price||0) - (a.price||0));
+    return out;
+  }
+
+  function bindFilterEvents(refreshFn){
+    ['filterMin','filterMax','filterSort'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener('input', refreshFn);
+    });
+  }
+
+  function renderCategory(slug){
+    const meta = CATEGORY_META[slug] || { label: slug, icon:'🛒' };
+    document.getElementById('shopView').innerHTML = `
+      <div class="shop-head">
+        <a class="back-link" href="#top">← Back to Home</a>
+        <span class="kicker">${meta.icon} Category</span>
+        <h2>${meta.label}</h2>
+      </div>
+      <div class="shop-layout">
+        ${filterPanelHTML()}
+        <div class="product-grid" id="productGrid"></div>
+      </div>`;
+    function refresh(){
+      let items = applyFilters(PRODUCTS.filter(p => p.cat === slug));
+      document.getElementById('productGrid').innerHTML = items.length
+        ? items.map(productCardHTML).join('')
+        : `<div class="empty-state">No products listed here yet — check back soon, or DM us on WhatsApp for what's in stock.</div>`;
+    }
+    bindFilterEvents(refresh);
+    refresh();
+  }
+
+  function renderSearch(){
+    document.getElementById('shopView').innerHTML = `
+      <div class="shop-head">
+        <a class="back-link" href="#top">← Back to Home</a>
+        <span class="kicker">🔍 Search</span>
+        <h2>Search Products</h2>
+      </div>
+      <div class="search-bar-wrap">
+        <input type="text" class="search-input" id="searchInput" placeholder="Search for GPU, CPU, keyboard...">
+      </div>
+      <div class="shop-layout">
+        ${filterPanelHTML()}
+        <div class="product-grid" id="productGrid"></div>
+      </div>`;
+    function refresh(){
+      const q = (document.getElementById('searchInput')?.value || '').toLowerCase().trim();
+      let items = q
+        ? PRODUCTS.filter(p => p.name.toLowerCase().includes(q) || (CATEGORY_META[p.cat]?.label || '').toLowerCase().includes(q))
+        : PRODUCTS.slice();
+      items = applyFilters(items);
+      document.getElementById('productGrid').innerHTML = items.length
+        ? items.map(productCardHTML).join('')
+        : `<div class="empty-state">No matching products. Try a different search term, or DM us on WhatsApp.</div>`;
+    }
+    document.getElementById('searchInput').addEventListener('input', refresh);
+    bindFilterEvents(refresh);
+    refresh();
+  }
+
+  /* ---------- router ---------- */
+  function router(){
+    const hash = window.location.hash;
+    const shopView = document.getElementById('shopView');
+    const home = document.getElementById('top');
+    if (hash.startsWith('#/category/')){
+      home.style.display = 'none'; shopView.style.display = 'block';
+      renderCategory(hash.replace('#/category/',''));
+      window.scrollTo(0,0);
+    } else if (hash.startsWith('#/search')){
+      home.style.display = 'none'; shopView.style.display = 'block';
+      renderSearch();
+      window.scrollTo(0,0);
+    } else {
+      home.style.display = ''; shopView.style.display = 'none';
+    }
+  }
+  window.addEventListener('hashchange', router);
+  router();
+  updateCartUI();
+
+  /* ---------- global click handling (cart buttons, dynamic content) ---------- */
+  document.addEventListener('click', (e) => {
+    const add = e.target.closest('[data-add]');
+    if (add){ addToCart(add.dataset.add); return; }
+    const plus = e.target.closest('[data-qty-plus]');
+    if (plus){ changeQty(plus.dataset.qtyPlus, 1); return; }
+    const minus = e.target.closest('[data-qty-minus]');
+    if (minus){ changeQty(minus.dataset.qtyMinus, -1); return; }
+    const remove = e.target.closest('[data-remove]');
+    if (remove){ removeFromCart(remove.dataset.remove); return; }
+  });
+
+  document.getElementById('cartToggle').addEventListener('click', () => {
+    document.getElementById('cartDrawer').classList.contains('active') ? closeCart() : openCart();
+  });
+  document.getElementById('cartOverlay').addEventListener('click', closeCart);
+  document.getElementById('cartClose').addEventListener('click', closeCart);
+  document.getElementById('searchToggle').addEventListener('click', () => { window.location.hash = '#/search'; });
 </script>
 
 </body>
