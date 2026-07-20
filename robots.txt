@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://abbas-804.github.io/amplified-gaming-store/sitemap.xml
