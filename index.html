@@ -3,7 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amplified Gaming Store — Gamers Ka Amazon</title>
+<title>Amplified Gaming Store — Custom Gaming PCs, PS5 & Accessories in Rawalpindi</title>
+<meta name="description" content="Amplified Gaming Store — custom-built gaming PCs, PS5 consoles, GPUs, CPUs and accessories in Rawalpindi. Affordable, trusted, fast. Visit us at Midway Center, 6th Road.">
+<link rel="canonical" href="https://abbas-804.github.io/amplified-gaming-store/">
+
+<!-- Favicon / browser tab icon -->
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="shortcut icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
+
+<!-- Social share preview (WhatsApp, Instagram, Facebook, etc.) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Amplified Gaming Store — Gamers Ka Amazon">
+<meta property="og:description" content="Custom-built gaming PCs, PS5 consoles, GPUs, CPUs and accessories in Rawalpindi. Affordable, trusted, fast.">
+<meta property="og:image" content="https://abbas-804.github.io/amplified-gaming-store/logo.png">
+<meta property="og:url" content="https://abbas-804.github.io/amplified-gaming-store/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Amplified Gaming Store — Gamers Ka Amazon">
+<meta name="twitter:description" content="Custom-built gaming PCs, PS5 consoles, GPUs, CPUs and accessories in Rawalpindi.">
+<meta name="twitter:image" content="https://abbas-804.github.io/amplified-gaming-store/logo.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -307,20 +326,39 @@
     content:""; position:absolute; inset:14px; border-radius:50%; border:1px dashed rgba(243,236,223,0.18);
   }
 
-  /* ---------- component grid ---------- */
-  .parts-grid{
-    display:grid; grid-template-columns:repeat(4,1fr); gap:14px;
+  /* ---------- hex category grid ---------- */
+  .hex-grid{
+    display:flex; flex-wrap:wrap; justify-content:center;
+    gap:10px 8px; padding:10px 0 24px;
   }
-  @media (max-width:900px){.parts-grid{grid-template-columns:repeat(3,1fr);}}
-  @media (max-width:560px){.parts-grid{grid-template-columns:repeat(2,1fr);}}
-  .part-card{
-    background:var(--panel); border:1px solid var(--line); border-radius:12px;
-    padding:22px 16px; text-align:center;
-    transition:border-color 0.25s ease, transform 0.25s ease;
+  .hex-item{
+    width:160px; height:184px;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background:linear-gradient(160deg, var(--panel) 0%, var(--wood-dark) 100%);
+    border:1px solid var(--line);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
+    text-align:center; padding:0 20px;
+    transition:transform 0.25s ease, filter 0.25s ease;
+    position:relative;
   }
-  .part-card:hover{border-color:var(--gold); transform:translateY(-3px);}
-  .part-card .ic{font-size:26px; margin-bottom:10px; display:block;}
-  .part-card .lb{font-size:13px; font-weight:700; letter-spacing:0.02em;}
+  .hex-item:nth-child(even){ margin-top:32px; }
+  .hex-item:hover{ transform:translateY(-6px) scale(1.03); }
+  .hex-item .hx-ic{ font-size:28px; line-height:1; }
+  .hex-item.gold .hx-ic{ filter:drop-shadow(0 0 12px rgba(242,169,59,0.55)); }
+  .hex-item.glow .hx-ic{ filter:drop-shadow(0 0 12px rgba(168,85,224,0.55)); }
+  .hex-item .hx-label{
+    font-family:'Anton',sans-serif; text-transform:uppercase; font-size:13.5px; letter-spacing:0.02em; color:var(--paper);
+  }
+  .hex-item.gold .hx-label{ color:var(--gold); }
+  .hex-item.glow .hx-label{ color:#d6a8f7; }
+  .hex-item .hx-count{
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--paper-dim);
+  }
+  @media (max-width:560px){
+    .hex-item{ width:128px; height:150px; padding:0 12px; }
+    .hex-item .hx-ic{ font-size:22px; }
+    .hex-item .hx-label{ font-size:11.5px; }
+  }
 
   /* ---------- reviews ---------- */
   .review-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
@@ -470,26 +508,26 @@
   <section id="parts" style="padding-top:0;">
     <div class="section-head reveal">
       <span class="kicker">Every part, one shop</span>
-      <h2>Build it from scratch, or upgrade one part.</h2>
+      <h2>Shop by category.</h2>
       <p>All the core components for a custom rig — genuine parts, in stock, with straight answers on what fits your budget.</p>
     </div>
-    <div class="parts-grid">
-      <div class="part-card reveal"><span class="ic">🎮</span><span class="lb">Graphics Card</span></div>
-      <div class="part-card reveal"><span class="ic">🧠</span><span class="lb">Processor</span></div>
-      <div class="part-card reveal"><span class="ic">🔗</span><span class="lb">Motherboard</span></div>
-      <div class="part-card reveal"><span class="ic">💾</span><span class="lb">RAM</span></div>
-      <div class="part-card reveal"><span class="ic">🗄️</span><span class="lb">Storage / SSD</span></div>
-      <div class="part-card reveal"><span class="ic">🔌</span><span class="lb">Power Supply</span></div>
-      <div class="part-card reveal"><span class="ic">📦</span><span class="lb">PC Case</span></div>
-      <div class="part-card reveal"><span class="ic">❄️</span><span class="lb">CPU Cooler</span></div>
-      <div class="part-card reveal"><span class="ic">🌀</span><span class="lb">Case Fans</span></div>
-      <div class="part-card reveal"><span class="ic">🖥️</span><span class="lb">Monitor</span></div>
-      <div class="part-card reveal"><span class="ic">⌨️</span><span class="lb">Keyboard</span></div>
-      <div class="part-card reveal"><span class="ic">🖱️</span><span class="lb">Mouse</span></div>
-      <div class="part-card reveal"><span class="ic">🎧</span><span class="lb">Headphones</span></div>
-      <div class="part-card reveal"><span class="ic">🪑</span><span class="lb">Gaming Chair</span></div>
-      <div class="part-card reveal"><span class="ic">📷</span><span class="lb">Webcam</span></div>
-      <div class="part-card reveal"><span class="ic">🔊</span><span class="lb">Speakers</span></div>
+    <div class="hex-grid reveal">
+      <div class="hex-item gold"><span class="hx-ic">🎮</span><span class="hx-label">Graphics Cards</span><span class="hx-count">40+ Products</span></div>
+      <div class="hex-item glow"><span class="hx-ic">🧠</span><span class="hx-label">Processors</span><span class="hx-count">25+ Products</span></div>
+      <div class="hex-item gold"><span class="hx-ic">🔗</span><span class="hx-label">Motherboards</span><span class="hx-count">20+ Products</span></div>
+      <div class="hex-item glow"><span class="hx-ic">💾</span><span class="hx-label">RAM</span><span class="hx-count">35+ Products</span></div>
+      <div class="hex-item gold"><span class="hx-ic">🗄️</span><span class="hx-label">Storage / SSD</span><span class="hx-count">18+ Products</span></div>
+      <div class="hex-item glow"><span class="hx-ic">🔌</span><span class="hx-label">Power Supplies</span><span class="hx-count">12+ Products</span></div>
+      <div class="hex-item gold"><span class="hx-ic">📦</span><span class="hx-label">Gaming Cases</span><span class="hx-count">15+ Products</span></div>
+      <div class="hex-item glow"><span class="hx-ic">❄️</span><span class="hx-label">CPU Coolers</span><span class="hx-count">14+ Products</span></div>
+      <div class="hex-item gold"><span class="hx-ic">🌀</span><span class="hx-label">ARGB Fans</span><span class="hx-count">10+ Products</span></div>
+      <div class="hex-item glow"><span class="hx-ic">🖥️</span><span class="hx-label">Monitors</span><span class="hx-count">12+ Products</span></div>
+      <div class="hex-item gold"><span class="hx-ic">⌨️</span><span class="hx-label">Keyboards</span><span class="hx-count">8+ Products</span></div>
+      <div class="hex-item glow"><span class="hx-ic">🖱️</span><span class="hx-label">Mouse</span><span class="hx-count">10+ Products</span></div>
+      <div class="hex-item gold"><span class="hx-ic">🎧</span><span class="hx-label">Headphones</span><span class="hx-count">9+ Products</span></div>
+      <div class="hex-item glow"><span class="hx-ic">🪑</span><span class="hx-label">Gaming Chairs</span><span class="hx-count">6+ Products</span></div>
+      <div class="hex-item gold"><span class="hx-ic">📷</span><span class="hx-label">Webcams</span><span class="hx-count">4+ Products</span></div>
+      <div class="hex-item glow"><span class="hx-ic">🔊</span><span class="hx-label">Speakers</span><span class="hx-count">5+ Products</span></div>
     </div>
   </section>
     <div class="section-head reveal">
