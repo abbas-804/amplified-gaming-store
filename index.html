@@ -525,6 +525,7 @@
     <a href="#consoles">Consoles</a>
     <a href="#reviews">Reviews</a>
     <a href="#visit">Visit Us</a>
+    <a href="#/shop" style="color:var(--gold);">Shop Now</a>
   </nav>
   <div class="header-actions">
     <button class="icon-btn" id="searchToggle" aria-label="Search products">🔍</button>
@@ -661,34 +662,24 @@
       <a class="hex-item glow" href="#/category/chair"><span class="hx-ic">🪑</span><span class="hx-label">Gaming Chairs</span><span class="hx-count" data-count="chair">6+ Products</span></a>
       <a class="hex-item gold" href="#/category/webcam"><span class="hx-ic">📷</span><span class="hx-label">Webcams</span><span class="hx-count" data-count="webcam">4+ Products</span></a>
       <a class="hex-item glow" href="#/category/speakers"><span class="hx-ic">🔊</span><span class="hx-label">Speakers</span><span class="hx-count" data-count="speakers">5+ Products</span></a>
-      <a class="hex-item gold" href="#/category/consoles"><span class="hx-ic">🕹️</span><span class="hx-label">Consoles</span><span class="hx-count" data-count="consoles">3 Products</span></a>
-    </div>
-  </section>
-    <div class="section-head reveal">
-      <span class="kicker">In-store now</span>
-      <h2>PS5, controllers &amp; accessories.</h2>
-      <p>Consoles, extra controllers, headsets, and every cable or mount you need to actually set it up right — all in stock at the shop.</p>
-    </div>
-    <div class="cat-grid reveal">
-      <div class="cat-card">
-        <div class="cat-num">◆ CONSOLE</div>
-        <h3>PS5 Units</h3>
-        <p>New and verified units with genuine controllers, ready to take home the same day.</p>
-      </div>
-      <div class="cat-card">
-        <div class="cat-num">◆ AUDIO</div>
-        <h3>Headsets &amp; Mics</h3>
-        <p>Gaming headsets and mics for chat, streaming, and everything in between.</p>
-      </div>
-      <div class="cat-card">
-        <div class="cat-num">◆ SETUP</div>
-        <h3>Cables &amp; Mounts</h3>
-        <p>Every cable, riser, and mount to get your setup looking as clean as it plays.</p>
-      </div>
     </div>
   </section>
 
-  <section id="accessories" style="padding-top:0;">
+  <section id="consoles" style="padding-top:0;">
+    <div class="section-head reveal">
+      <span class="kicker">In-store now</span>
+      <h2>Consoles.</h2>
+      <p>PS4, PS5, controllers, and every console accessory you need — all in stock at the shop.</p>
+    </div>
+    <div class="hex-grid reveal">
+      <a class="hex-item gold" href="#/category/ps5"><span class="hx-ic">🎮</span><span class="hx-label">PS5 Series</span><span class="hx-count">DM for Price</span></a>
+      <a class="hex-item glow" href="#/category/ps4"><span class="hx-ic">🎮</span><span class="hx-label">PS4 Series</span><span class="hx-count">DM for Price</span></a>
+      <a class="hex-item gold" href="#/category/controllers"><span class="hx-ic">🕹️</span><span class="hx-label">Controllers</span><span class="hx-count">DM for Price</span></a>
+      <a class="hex-item glow" href="#/category/accessories"><span class="hx-ic">🔌</span><span class="hx-label">Accessories</span><span class="hx-count">DM for Price</span></a>
+    </div>
+  </section>
+
+  <section id="trust-strip" style="padding-top:0;">
     <div class="trust reveal">
       <div>
         <h4>Affordable</h4>
@@ -821,7 +812,10 @@
     chair:{label:'Gaming Chairs', icon:'🪑'},
     webcam:{label:'Webcams', icon:'📷'},
     speakers:{label:'Speakers', icon:'🔊'},
-    consoles:{label:'Consoles', icon:'🕹️'}
+    ps5:{label:'PS5 Series', icon:'🎮'},
+    ps4:{label:'PS4 Series', icon:'🎮'},
+    controllers:{label:'Controllers', icon:'🕹️'},
+    accessories:{label:'Accessories', icon:'🔌'}
   };
 
   // Add new products here as they're confirmed — cat must match a key above.
@@ -830,9 +824,10 @@
     { id:'cpu-8700f', cat:'cpu', name:'AMD Ryzen 7 8700F', desc:'8-core / 16-thread desktop processor — strong pick for high-end gaming and multitasking builds.', price:50000, img:'assets/cpu-ryzen7-8700f.webp' },
     { id:'cpu-3700x', cat:'cpu', name:'AMD Ryzen 7 3700X', desc:'8-core / 16-thread processor — reliable performer for solid 1080p/1440p gaming rigs.', price:30000, img:'assets/cpu-ryzen7-3700x.webp' },
     { id:'cpu-3500x', cat:'cpu', name:'AMD Ryzen 5 3500X', desc:'6-core processor — great value pick for budget and mid-range gaming builds.', price:15500, img:'assets/cpu-ryzen5-3500x.webp' },
-    { id:'console-ps5', cat:'consoles', name:'PlayStation 5', desc:'Latest-gen Sony console — ask in-store for current bundle and controller options.', price:null, img:null, icon:'🎮' },
-    { id:'console-ps4', cat:'consoles', name:'PlayStation 4', desc:'Reliable last-gen console with a huge game library at a lower price point.', price:null, img:null, icon:'🎮' },
-    { id:'console-xbox', cat:'consoles', name:'Xbox Series S', desc:'Compact next-gen Xbox console — ask about current stock and pricing.', price:null, img:null, icon:'🕹️' }
+    { id:'console-ps5', cat:'ps5', name:'PlayStation 5 Series', desc:'PS5 Standard and Slim/Digital editions — ask in-store for current bundle and controller options.', price:null, img:null, icon:'🎮' },
+    { id:'console-ps4', cat:'ps4', name:'PlayStation 4 Series', desc:'PS4 Slim and Pro editions — reliable last-gen consoles with a huge game library.', price:null, img:null, icon:'🎮' },
+    { id:'console-controllers', cat:'controllers', name:'Controllers', desc:'Genuine DualSense, DualShock, and Xbox controllers — ask about current colors in stock.', price:null, img:null, icon:'🕹️' },
+    { id:'console-accessories', cat:'accessories', name:'Console Accessories', desc:'Charging docks, headsets, extra storage, and other console add-ons.', price:null, img:null, icon:'🔌' }
   ];
 
   function money(n){ return 'Rs. ' + Number(n).toLocaleString('en-PK'); }
@@ -997,18 +992,20 @@
       let items = applyFilters(PRODUCTS.filter(p => p.cat === slug));
       document.getElementById('productGrid').innerHTML = items.length
         ? items.map(productCardHTML).join('')
-        : `<div class="empty-state">No products listed here yet — check back soon, or DM us on WhatsApp for what's in stock.</div>`;
+        : `<div class="empty-state">Not available right now — DM us on WhatsApp to check current stock.</div>`;
     }
     bindFilterEvents(refresh);
     refresh();
   }
 
-  function renderSearch(){
+  function renderShop(mode){
+    // mode: 'shop' (Shop Now — all products) or 'search' (search view)
+    const isSearch = mode === 'search';
     document.getElementById('shopView').innerHTML = `
       <div class="shop-head">
         <a class="back-link" href="#top">← Back to Home</a>
-        <span class="kicker">🔍 Search</span>
-        <h2>Search Products</h2>
+        <span class="kicker">${isSearch ? '🔍 Search' : '🛒 Shop Now'}</span>
+        <h2>${isSearch ? 'Search Products' : 'All Products'}</h2>
       </div>
       <div class="search-bar-wrap">
         <input type="text" class="search-input" id="searchInput" placeholder="Search for GPU, CPU, keyboard...">
@@ -1041,9 +1038,13 @@
       home.style.display = 'none'; shopView.style.display = 'block';
       renderCategory(hash.replace('#/category/',''));
       window.scrollTo(0,0);
+    } else if (hash.startsWith('#/shop')){
+      home.style.display = 'none'; shopView.style.display = 'block';
+      renderShop('shop');
+      window.scrollTo(0,0);
     } else if (hash.startsWith('#/search')){
       home.style.display = 'none'; shopView.style.display = 'block';
-      renderSearch();
+      renderShop('search');
       window.scrollTo(0,0);
     } else {
       home.style.display = ''; shopView.style.display = 'none';
