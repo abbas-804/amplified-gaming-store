@@ -264,10 +264,14 @@
   .map-box{
     border-radius:16px; overflow:hidden; border:1px solid var(--line);
     min-height:280px; background:var(--wood-dark);
-    display:flex; align-items:center; justify-content:center; text-align:center; padding:24px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
+  }
+  .map-box .map-img{
+    width:100%; height:220px; object-fit:cover; display:block;
   }
   .map-box a{
     color:var(--gold); font-weight:700; text-decoration:underline; text-underline-offset:4px;
+    padding:16px 24px; display:block;
   }
 
   /* ---------- footer ---------- */
@@ -375,6 +379,15 @@
   }
 
   /* ---------- reviews ---------- */
+  .google-verified{
+    display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:var(--paper-dim);
+    font-family:'JetBrains Mono',monospace; font-size:12.5px; margin-bottom:22px;
+  }
+  .google-verified:hover{ color:var(--gold); }
+  .gv-badge{
+    width:18px; height:18px; border-radius:50%; background:linear-gradient(135deg,var(--ember),var(--gold));
+    color:var(--ink); font-size:11px; font-weight:800; display:inline-flex; align-items:center; justify-content:center;
+  }
   .review-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
   @media (max-width:900px){.review-grid{grid-template-columns:1fr;}}
   .review-card{
@@ -740,7 +753,7 @@
         </div>
         <div class="visit-row">
           <div class="k">🕒</div>
-          <div class="v">Open daily<small>Visit in person for hands-on demos of builds &amp; consoles</small></div>
+          <div class="v">Timing<small>2:30PM–9:30 PM, Friday closed</small></div>
         </div>
         <div class="visit-row">
           <div class="k">💬</div>
@@ -748,7 +761,8 @@
         </div>
       </div>
       <div class="map-box">
-        <a href="https://www.google.com/maps/search/Midway+Center+6th+Road+Rawalpindi" target="_blank" rel="noopener">Open location in Google Maps →</a>
+        <img src="assets/store-location-map.png" alt="Amplified Gaming Store location map — Midway Center, 6th Road, Rawalpindi" class="map-img">
+        <a href="https://www.google.com/maps/place/Amplified+Gaming+Store+-+AGS/@33.6411835,73.0762986,17z/data=!4m8!3m7!1s0x38df959b54e2c8a3:0x8e98096b8dd0442a!8m2!3d33.6411835!4d73.0762986!9m1!1b1!16s%2Fg%2F11s69v48kk?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">Open location in Google Maps →</a>
       </div>
     </div>
   </section>
@@ -757,37 +771,40 @@
       <span class="kicker">From real customers</span>
       <h2>What gamers are saying.</h2>
     </div>
+    <a class="google-verified reveal" href="https://www.google.com/maps/place/Amplified+Gaming+Store+-+AGS/@33.6411835,73.0762986,17z/data=!4m8!3m7!1s0x38df959b54e2c8a3:0x8e98096b8dd0442a!8m2!3d33.6411835!4d73.0762986!9m1!1b1!16s%2Fg%2F11s69v48kk?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">
+      <span class="gv-badge">✓</span> Google Verified — see all reviews →
+    </a>
     <div class="review-grid">
       <div class="review-card reveal">
         <span class="stars" style="--pct:100%">★★★★★</span>
-        <p class="review-quote">"Got my PC built here last month, honestly better experience than I expected. Guy explained every part before buying and didn't just push the expensive stuff on me. Running everything smooth on 1080p."</p>
+        <p class="review-quote">"Amplified Gaming Store is a true gem for tech enthusiasts! Their impressive range of cutting-edge gadgets and accessories blew me away. The staff's knowledge and friendliness made my shopping experience a delight. The store's organized layout and sleek design create a welcoming atmosphere. From gaming essentials to the latest tech trends, Amplified Gaming Store is a one-stop haven for all things tech. Highly recommended!"</p>
         <div class="review-who">
-          <div class="review-avatar">H</div>
+          <div class="review-avatar">Z</div>
           <div>
-            <div class="review-name">Hamza R.</div>
-            <div class="review-meta">Custom PC build</div>
+            <div class="review-name">Zaheer Ahmed</div>
+            <div class="review-meta">Google Review</div>
           </div>
         </div>
       </div>
       <div class="review-card reveal">
         <span class="stars" style="--pct:100%">★★★★★</span>
-        <p class="review-quote">"Bought a PS5 controller and a headset from here, prices were better than what I saw online honestly. Shop is easy to find in Midway, staff answered all my questions on WhatsApp before I even went in."</p>
+        <p class="review-quote">"Had a really amazing experience with them, everyone in shop is super nice, skilled and cooperative. The environment is really nice and the prices are so good and comparatively really cheap too! I love the fact that they have their own niche and items that aren't available in the whole market but them. Loved the experience 10/10 will definitely go again InshAllah"</p>
         <div class="review-who">
-          <div class="review-avatar">A</div>
+          <div class="review-avatar">H</div>
           <div>
-            <div class="review-name">Ayesha K.</div>
-            <div class="review-meta">Accessories</div>
+            <div class="review-name">Hani</div>
+            <div class="review-meta">Google Review</div>
           </div>
         </div>
       </div>
       <div class="review-card reveal">
-        <span class="stars" style="--pct:90%">★★★★★</span>
-        <p class="review-quote">"Solid experience overall, upgraded my GPU and RAM here. Only reason it's not a full 5 stars is I had to wait a couple extra days for stock, but they kept me updated the whole time which I appreciated."</p>
+        <span class="stars" style="--pct:100%">★★★★★</span>
+        <p class="review-quote">"The owners Waleed and Azam are the best in the gaming business in all of twin cities. Friendly and cooperative people who knows how to treat the gamers. They don't see us as customers and provides you with best of options under your budget. Good affordable rates on anything computer related. The variety of stuff is massive. They deal in almost every good brand unlike many others in Dubai plaza and Midway Centrum."</p>
         <div class="review-who">
-          <div class="review-avatar">U</div>
+          <div class="review-avatar">M</div>
           <div>
-            <div class="review-name">Usman T.</div>
-            <div class="review-meta">Upgrade / parts</div>
+            <div class="review-name">Muhammad Qasim.J</div>
+            <div class="review-meta">Google Review</div>
           </div>
         </div>
       </div>
@@ -852,61 +869,6 @@
   // Add new products here as they're confirmed — cat must match a key above.
   // price:null items show a "DM for Price" button instead of Add to Cart.
   const PRODUCTS = [
-    { id:'cpu-8700f', cat:'cpu', name:'AMD Ryzen 7 8700F', desc:'8-core / 16-thread desktop processor — strong pick for high-end gaming and multitasking builds.', price:50000, img:'assets/cpu-ryzen7-8700f.webp', brand:'AMD',
-      specs:[
-        '8 cores and 16 threads built on AMD\'s newer Zen 4 architecture',
-        'Base clock of 4.1GHz, boosting up to 5.0GHz under load',
-        '16MB of L3 cache for smooth multitasking and gaming performance',
-        'AM5 socket with support for faster DDR5 memory and PCIe 4.0',
-        '65W TDP — runs cool and doesn\'t need heavy-duty cooling',
-        'No integrated graphics, so a dedicated graphics card is required'
-      ],
-      highlights:[
-        { label:'High-Performance Core Count', text:'Features 8 cores and 16 processing threads, easily handling CPU-heavy games while streaming or running background apps.' },
-        { label:'Blistering Clock Speeds', text:'Delivers a base clock of 4.1 GHz with a max boost up to 5.0 GHz, plus an unlocked multiplier for easy overclocking.' },
-        { label:'Next-Gen AM5 Platform', text:'Supports state-of-the-art DDR5 memory and is built for the AM5 socket, ensuring your system is easily upgradable for years.' },
-        { label:'Dedicated AI Engine', text:'Equipped with built-in Ryzen AI (up to 16 TOPS) to accelerate supported AI productivity workloads, background noise reduction, and smart streaming features.' },
-        { label:'Pure Gaming Focus', text:'The "F" series does not have an integrated GPU, making it the perfect budget pairing for a dedicated graphics card.' },
-        { label:'Power Efficient', text:'Operates at a standard 65W TDP, keeping thermal output low and performance highly efficient.' }
-      ] },
-    { id:'cpu-3700x', cat:'cpu', name:'AMD Ryzen 7 3700X', desc:'8-core / 16-thread processor — reliable performer for solid 1080p/1440p gaming rigs.', price:30000, img:'assets/cpu-ryzen7-3700x.webp', brand:'AMD',
-      specs:[
-        '8 cores and 16 threads built on AMD\'s Zen 2 architecture',
-        'Base clock of 3.6GHz, boosting up to 4.4GHz',
-        '32MB of L3 "Game Cache" for smoother, more consistent frame rates',
-        'AM4 socket with dual-channel DDR4-3200 memory support and PCIe 4.0 on a compatible board',
-        '65W TDP, and ships with AMD\'s Wraith Prism RGB cooler included',
-        'No integrated graphics, so a dedicated graphics card is required'
-      ],
-      highlights:[
-        { label:'Strong Multi-Core Performance', text:'8 cores and 16 threads handle demanding games, streaming, and background multitasking with ease.' },
-        { label:'Reliable Clock Speeds', text:'Runs at a 3.6 GHz base clock, boosting up to 4.4 GHz, with an unlocked multiplier for overclocking headroom.' },
-        { label:'Proven AM4 Platform', text:'Built for the widely-supported, budget-friendly AM4 socket with dual-channel DDR4-3200 memory support.' },
-        { label:'Generous Game Cache', text:'A large 32MB L3 "Game Cache" helps deliver smoother, more consistent in-game frame rates.' },
-        { label:'Cooler Included', text:'Ships with AMD\'s Wraith Prism RGB cooler in the box, so there\'s no need to buy one separately to get started.' },
-        { label:'Power Efficient', text:'Operates at a standard 65W TDP, keeping temperatures and power draw low.' }
-      ] },
-    { id:'cpu-3500x', cat:'cpu', name:'AMD Ryzen 5 3500X', desc:'6-core processor — great value pick for budget and mid-range gaming builds.', price:15500, img:'assets/cpu-ryzen5-3500x.webp', brand:'AMD',
-      specs:[
-        '6 cores and 6 threads (no simultaneous multithreading) on Zen 2 architecture',
-        'Base clock of 3.6GHz, boosting up to 4.1GHz',
-        '32MB of L3 cache for its class',
-        'AM4 socket with dual-channel DDR4-3200 memory support',
-        '65W TDP with an unlocked multiplier, so it\'s overclocking-friendly',
-        'No integrated graphics, so a dedicated graphics card is required'
-      ],
-      highlights:[
-        { label:'Reliable Six-Core Performance', text:'6 cores and 6 threads make this a great match for everyday gaming and general desktop use.' },
-        { label:'Solid Clock Speeds', text:'Runs at a 3.6 GHz base clock, boosting up to 4.1 GHz for snappy performance in games and apps.' },
-        { label:'Proven AM4 Platform', text:'Built for the widely-supported, budget-friendly AM4 socket with dual-channel DDR4-3200 memory support.' },
-        { label:'Roomy Cache', text:'Comes with 32MB of L3 cache for its class, helping keep data access quick and responsive.' },
-        { label:'Overclocking Friendly', text:'Includes an unlocked multiplier, so enthusiasts can push extra performance with the right cooling.' },
-        { label:'Power Efficient', text:'Operates at a standard 65W TDP, keeping thermal output low and efficient.' }
-      ] },
-    { id:'console-ps5', cat:'ps5', name:'PlayStation 5 Series', desc:'PS5 Standard and Slim/Digital editions — ask in-store for current bundle and controller options.', price:null, img:null, icon:'🎮', brand:'Sony' },
-    { id:'console-ps4', cat:'ps4', name:'PlayStation 4 Series', desc:'PS4 Slim and Pro editions — reliable last-gen consoles with a huge game library.', price:null, img:null, icon:'🎮', brand:'Sony' },
-    { id:'console-controllers', cat:'controllers', name:'Controllers', desc:'Genuine DualSense, DualShock, and Xbox controllers — ask about current colors in stock.', price:null, img:null, icon:'🕹️', brand:'Various' },
-    { id:'console-accessories', cat:'accessories', name:'Console Accessories', desc:'Charging docks, headsets, extra storage, and other console add-ons.', price:null, img:null, icon:'🔌', brand:'Various' }
   ];
 
   function money(n){ return 'Rs. ' + Number(n).toLocaleString('en-PK'); }
