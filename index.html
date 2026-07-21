@@ -512,7 +512,14 @@
   .pd-title{ font-family:'Anton',sans-serif; text-transform:uppercase; font-size:clamp(24px,3.2vw,36px); margin:0 0 12px; }
   .pd-price{ font-family:'JetBrains Mono',monospace; color:var(--gold); font-size:24px; font-weight:800; margin-bottom:12px; }
   .pd-brand{ font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--paper-dim); margin-bottom:18px; letter-spacing:0.03em; }
-  .pd-desc{ font-size:14.5px; line-height:1.75; color:var(--paper-dim); margin-bottom:26px; }
+  .pd-desc{ font-size:14.5px; line-height:1.75; color:var(--paper-dim); margin-bottom:16px; }
+  .pd-specs{ list-style:none; margin:0 0 26px; padding:0; display:flex; flex-direction:column; gap:10px; }
+  .pd-specs li{
+    font-size:13.5px; line-height:1.55; color:var(--paper-dim); padding-left:20px; position:relative;
+  }
+  .pd-specs li::before{
+    content:"◆"; position:absolute; left:0; top:1px; color:var(--gold); font-size:10px;
+  }
   .pd-action{ max-width:260px; }
 
   .wa-float{
@@ -839,9 +846,33 @@
   // Add new products here as they're confirmed — cat must match a key above.
   // price:null items show a "DM for Price" button instead of Add to Cart.
   const PRODUCTS = [
-    { id:'cpu-8700f', cat:'cpu', name:'AMD Ryzen 7 8700F', desc:'8-core / 16-thread desktop processor — strong pick for high-end gaming and multitasking builds.', price:50000, img:'assets/cpu-ryzen7-8700f.webp', brand:'AMD' },
-    { id:'cpu-3700x', cat:'cpu', name:'AMD Ryzen 7 3700X', desc:'8-core / 16-thread processor — reliable performer for solid 1080p/1440p gaming rigs.', price:30000, img:'assets/cpu-ryzen7-3700x.webp', brand:'AMD' },
-    { id:'cpu-3500x', cat:'cpu', name:'AMD Ryzen 5 3500X', desc:'6-core processor — great value pick for budget and mid-range gaming builds.', price:15500, img:'assets/cpu-ryzen5-3500x.webp', brand:'AMD' },
+    { id:'cpu-8700f', cat:'cpu', name:'AMD Ryzen 7 8700F', desc:'8-core / 16-thread desktop processor — strong pick for high-end gaming and multitasking builds.', price:50000, img:'assets/cpu-ryzen7-8700f.webp', brand:'AMD',
+      specs:[
+        '8 cores and 16 threads built on AMD\'s newer Zen 4 architecture',
+        'Base clock of 4.1GHz, boosting up to 5.0GHz under load',
+        '16MB of L3 cache for smooth multitasking and gaming performance',
+        'AM5 socket with support for faster DDR5 memory and PCIe 4.0',
+        '65W TDP — runs cool and doesn\'t need heavy-duty cooling',
+        'No integrated graphics, so a dedicated graphics card is required'
+      ] },
+    { id:'cpu-3700x', cat:'cpu', name:'AMD Ryzen 7 3700X', desc:'8-core / 16-thread processor — reliable performer for solid 1080p/1440p gaming rigs.', price:30000, img:'assets/cpu-ryzen7-3700x.webp', brand:'AMD',
+      specs:[
+        '8 cores and 16 threads built on AMD\'s Zen 2 architecture',
+        'Base clock of 3.6GHz, boosting up to 4.4GHz',
+        '32MB of L3 "Game Cache" for smoother, more consistent frame rates',
+        'AM4 socket with dual-channel DDR4-3200 memory support and PCIe 4.0 on a compatible board',
+        '65W TDP, and ships with AMD\'s Wraith Prism RGB cooler included',
+        'No integrated graphics, so a dedicated graphics card is required'
+      ] },
+    { id:'cpu-3500x', cat:'cpu', name:'AMD Ryzen 5 3500X', desc:'6-core processor — great value pick for budget and mid-range gaming builds.', price:15500, img:'assets/cpu-ryzen5-3500x.webp', brand:'AMD',
+      specs:[
+        '6 cores and 6 threads (no simultaneous multithreading) on Zen 2 architecture',
+        'Base clock of 3.6GHz, boosting up to 4.1GHz',
+        '32MB of L3 cache for its class',
+        'AM4 socket with dual-channel DDR4-3200 memory support',
+        '65W TDP with an unlocked multiplier, so it\'s overclocking-friendly',
+        'No integrated graphics, so a dedicated graphics card is required'
+      ] },
     { id:'console-ps5', cat:'ps5', name:'PlayStation 5 Series', desc:'PS5 Standard and Slim/Digital editions — ask in-store for current bundle and controller options.', price:null, img:null, icon:'🎮', brand:'Sony' },
     { id:'console-ps4', cat:'ps4', name:'PlayStation 4 Series', desc:'PS4 Slim and Pro editions — reliable last-gen consoles with a huge game library.', price:null, img:null, icon:'🎮', brand:'Sony' },
     { id:'console-controllers', cat:'controllers', name:'Controllers', desc:'Genuine DualSense, DualShock, and Xbox controllers — ask about current colors in stock.', price:null, img:null, icon:'🕹️', brand:'Various' },
@@ -962,6 +993,9 @@
     const action = p.price
       ? `<button class="add-cart-btn pd-action" data-add="${p.id}">Add to Cart</button>`
       : `<a class="contact-btn pd-action" href="https://wa.me/${WA_NUMBER}" target="_blank" rel="noopener">DM for Price</a>`;
+    const specsHTML = p.specs && p.specs.length
+      ? `<ul class="pd-specs">${p.specs.map(s => `<li>${s}</li>`).join('')}</ul>`
+      : '';
     shopView.innerHTML = `
       <div class="shop-head">
         <a class="back-link" href="#${p.cat ? '/category/' + p.cat : 'top'}">← Back to ${CATEGORY_META[p.cat]?.label || 'Home'}</a>
@@ -973,6 +1007,7 @@
           ${p.price ? `<div class="pd-price">${money(p.price)}</div>` : ''}
           <div class="pd-brand">Brand: ${p.brand || 'Amplified Gaming Store'}</div>
           <p class="pd-desc">${p.desc}</p>
+          ${specsHTML}
           ${action}
         </div>
       </div>`;
