@@ -429,7 +429,7 @@
   .product-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:18px; }
   .product-card{
     background:var(--panel); border:1px solid var(--line); border-radius:14px; overflow:hidden;
-    display:flex; flex-direction:column;
+    display:flex; flex-direction:column; cursor:pointer;
   }
   .product-media{
     aspect-ratio:1; background:var(--wood-dark); display:flex; align-items:center; justify-content:center;
@@ -496,6 +496,24 @@
     text-transform:uppercase; font-size:15px;
   }
   .checkout-btn{ display:block; width:100%; box-sizing:border-box; }
+
+  /* ---------- product detail page ---------- */
+  .product-detail{
+    display:grid; grid-template-columns:1fr 1fr; gap:44px;
+    padding:10px clamp(18px,5vw,64px) 90px; align-items:start;
+  }
+  @media (max-width:760px){ .product-detail{ grid-template-columns:1fr; } }
+  .product-detail-media{
+    background:var(--panel); border:1px solid var(--line); border-radius:16px;
+    aspect-ratio:1; display:flex; align-items:center; justify-content:center; overflow:hidden;
+  }
+  .product-detail-media img{ width:100%; height:100%; object-fit:contain; }
+  .product-detail-media .ic-fallback{ font-size:100px; }
+  .pd-title{ font-family:'Anton',sans-serif; text-transform:uppercase; font-size:clamp(24px,3.2vw,36px); margin:0 0 12px; }
+  .pd-price{ font-family:'JetBrains Mono',monospace; color:var(--gold); font-size:24px; font-weight:800; margin-bottom:12px; }
+  .pd-brand{ font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--paper-dim); margin-bottom:18px; letter-spacing:0.03em; }
+  .pd-desc{ font-size:14.5px; line-height:1.75; color:var(--paper-dim); margin-bottom:26px; }
+  .pd-action{ max-width:260px; }
 
   .wa-float{
     position:fixed; right:20px; bottom:20px; z-index:50;
@@ -565,7 +583,7 @@
       <h1 class="hero-title">GAMERS KA<br><span class="accent">AMAZON.</span></h1>
       <p class="hero-sub">Custom-built gaming PCs, PS5 consoles, and every accessory in between — assembled and tested in-store at Midway Center, Rawalpindi. Tell us your budget, we'll build the rig.</p>
       <div class="hero-actions">
-        <a class="cta-btn" href="https://wa.me/923340518175" target="_blank" rel="noopener">Get a Free Quote</a>
+        <a class="cta-btn" href="#/shop">Get Your Beast →</a>
         <a class="ghost-btn" href="#visit">Find the Shop →</a>
       </div>
     </div>
@@ -821,13 +839,13 @@
   // Add new products here as they're confirmed — cat must match a key above.
   // price:null items show a "DM for Price" button instead of Add to Cart.
   const PRODUCTS = [
-    { id:'cpu-8700f', cat:'cpu', name:'AMD Ryzen 7 8700F', desc:'8-core / 16-thread desktop processor — strong pick for high-end gaming and multitasking builds.', price:50000, img:'assets/cpu-ryzen7-8700f.webp' },
-    { id:'cpu-3700x', cat:'cpu', name:'AMD Ryzen 7 3700X', desc:'8-core / 16-thread processor — reliable performer for solid 1080p/1440p gaming rigs.', price:30000, img:'assets/cpu-ryzen7-3700x.webp' },
-    { id:'cpu-3500x', cat:'cpu', name:'AMD Ryzen 5 3500X', desc:'6-core processor — great value pick for budget and mid-range gaming builds.', price:15500, img:'assets/cpu-ryzen5-3500x.webp' },
-    { id:'console-ps5', cat:'ps5', name:'PlayStation 5 Series', desc:'PS5 Standard and Slim/Digital editions — ask in-store for current bundle and controller options.', price:null, img:null, icon:'🎮' },
-    { id:'console-ps4', cat:'ps4', name:'PlayStation 4 Series', desc:'PS4 Slim and Pro editions — reliable last-gen consoles with a huge game library.', price:null, img:null, icon:'🎮' },
-    { id:'console-controllers', cat:'controllers', name:'Controllers', desc:'Genuine DualSense, DualShock, and Xbox controllers — ask about current colors in stock.', price:null, img:null, icon:'🕹️' },
-    { id:'console-accessories', cat:'accessories', name:'Console Accessories', desc:'Charging docks, headsets, extra storage, and other console add-ons.', price:null, img:null, icon:'🔌' }
+    { id:'cpu-8700f', cat:'cpu', name:'AMD Ryzen 7 8700F', desc:'8-core / 16-thread desktop processor — strong pick for high-end gaming and multitasking builds.', price:50000, img:'assets/cpu-ryzen7-8700f.webp', brand:'AMD' },
+    { id:'cpu-3700x', cat:'cpu', name:'AMD Ryzen 7 3700X', desc:'8-core / 16-thread processor — reliable performer for solid 1080p/1440p gaming rigs.', price:30000, img:'assets/cpu-ryzen7-3700x.webp', brand:'AMD' },
+    { id:'cpu-3500x', cat:'cpu', name:'AMD Ryzen 5 3500X', desc:'6-core processor — great value pick for budget and mid-range gaming builds.', price:15500, img:'assets/cpu-ryzen5-3500x.webp', brand:'AMD' },
+    { id:'console-ps5', cat:'ps5', name:'PlayStation 5 Series', desc:'PS5 Standard and Slim/Digital editions — ask in-store for current bundle and controller options.', price:null, img:null, icon:'🎮', brand:'Sony' },
+    { id:'console-ps4', cat:'ps4', name:'PlayStation 4 Series', desc:'PS4 Slim and Pro editions — reliable last-gen consoles with a huge game library.', price:null, img:null, icon:'🎮', brand:'Sony' },
+    { id:'console-controllers', cat:'controllers', name:'Controllers', desc:'Genuine DualSense, DualShock, and Xbox controllers — ask about current colors in stock.', price:null, img:null, icon:'🕹️', brand:'Various' },
+    { id:'console-accessories', cat:'accessories', name:'Console Accessories', desc:'Charging docks, headsets, extra storage, and other console add-ons.', price:null, img:null, icon:'🔌', brand:'Various' }
   ];
 
   function money(n){ return 'Rs. ' + Number(n).toLocaleString('en-PK'); }
@@ -920,12 +938,41 @@
       ? `<button class="add-cart-btn" data-add="${p.id}">Add to Cart</button>`
       : `<a class="contact-btn" href="https://wa.me/${WA_NUMBER}" target="_blank" rel="noopener">DM for Price</a>`;
     return `
-      <div class="product-card">
+      <div class="product-card" data-open="${p.id}">
         <div class="product-media">${media}</div>
         <div class="product-info">
           <div class="product-name">${p.name}</div>
           <div class="product-desc">${p.desc}</div>
           ${p.price ? `<div class="product-price">${money(p.price)}</div>` : ''}
+          ${action}
+        </div>
+      </div>`;
+  }
+
+  function renderProduct(id){
+    const p = PRODUCTS.find(x => x.id === id);
+    const shopView = document.getElementById('shopView');
+    if (!p){
+      shopView.innerHTML = `<div class="shop-head"><a class="back-link" href="#top">← Back to Home</a><h2>Product not found</h2></div>`;
+      return;
+    }
+    const media = p.img
+      ? `<img src="${p.img}" alt="${p.name}">`
+      : `<span class="ic-fallback">${p.icon || '🎮'}</span>`;
+    const action = p.price
+      ? `<button class="add-cart-btn pd-action" data-add="${p.id}">Add to Cart</button>`
+      : `<a class="contact-btn pd-action" href="https://wa.me/${WA_NUMBER}" target="_blank" rel="noopener">DM for Price</a>`;
+    shopView.innerHTML = `
+      <div class="shop-head">
+        <a class="back-link" href="#${p.cat ? '/category/' + p.cat : 'top'}">← Back to ${CATEGORY_META[p.cat]?.label || 'Home'}</a>
+      </div>
+      <div class="product-detail">
+        <div class="product-detail-media">${media}</div>
+        <div class="product-detail-info">
+          <h2 class="pd-title">${p.name}</h2>
+          ${p.price ? `<div class="pd-price">${money(p.price)}</div>` : ''}
+          <div class="pd-brand">Brand: ${p.brand || 'Amplified Gaming Store'}</div>
+          <p class="pd-desc">${p.desc}</p>
           ${action}
         </div>
       </div>`;
@@ -1038,6 +1085,10 @@
       home.style.display = 'none'; shopView.style.display = 'block';
       renderCategory(hash.replace('#/category/',''));
       window.scrollTo(0,0);
+    } else if (hash.startsWith('#/product/')){
+      home.style.display = 'none'; shopView.style.display = 'block';
+      renderProduct(hash.replace('#/product/',''));
+      window.scrollTo(0,0);
     } else if (hash.startsWith('#/shop')){
       home.style.display = 'none'; shopView.style.display = 'block';
       renderShop('shop');
@@ -1064,6 +1115,11 @@
     if (minus){ changeQty(minus.dataset.qtyMinus, -1); return; }
     const remove = e.target.closest('[data-remove]');
     if (remove){ removeFromCart(remove.dataset.remove); return; }
+    const card = e.target.closest('.product-card');
+    if (card && !e.target.closest('.contact-btn')){
+      window.location.hash = '#/product/' + card.dataset.open;
+      return;
+    }
   });
 
   document.getElementById('cartToggle').addEventListener('click', () => {
