@@ -263,15 +263,15 @@
 
   .map-box{
     border-radius:16px; overflow:hidden; border:1px solid var(--line);
-    min-height:280px; background:var(--wood-dark);
-    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
+    background:var(--wood-dark);
+    display:flex; flex-direction:column; align-items:stretch; justify-content:flex-start; text-align:center;
   }
   .map-box .map-img{
-    width:100%; height:220px; object-fit:cover; display:block;
+    width:100%; flex:1; min-height:0; object-fit:cover; display:block;
   }
   .map-box a{
     color:var(--gold); font-weight:700; text-decoration:underline; text-underline-offset:4px;
-    padding:16px 24px; display:block;
+    padding:16px 24px; display:block; flex-shrink:0;
   }
 
   /* ---------- footer ---------- */
@@ -666,22 +666,22 @@
       <p>All the core components for a custom rig — genuine parts, in stock, with straight answers on what fits your budget.</p>
     </div>
     <div class="hex-grid reveal">
-      <a class="hex-item gold" href="#/category/gpu"><span class="hx-ic">🎮</span><span class="hx-label">Graphics Cards</span><span class="hx-count" data-count="gpu">40+ Products</span></a>
-      <a class="hex-item glow" href="#/category/cpu"><span class="hx-ic">🧠</span><span class="hx-label">Processors</span><span class="hx-count" data-count="cpu">3 Products</span></a>
-      <a class="hex-item gold" href="#/category/motherboard"><span class="hx-ic">🔗</span><span class="hx-label">Motherboards</span><span class="hx-count" data-count="motherboard">20+ Products</span></a>
-      <a class="hex-item glow" href="#/category/ram"><span class="hx-ic">💾</span><span class="hx-label">RAM</span><span class="hx-count" data-count="ram">35+ Products</span></a>
-      <a class="hex-item gold" href="#/category/storage"><span class="hx-ic">🗄️</span><span class="hx-label">Storage / SSD</span><span class="hx-count" data-count="storage">18+ Products</span></a>
-      <a class="hex-item glow" href="#/category/psu"><span class="hx-ic">🔌</span><span class="hx-label">Power Supplies</span><span class="hx-count" data-count="psu">12+ Products</span></a>
-      <a class="hex-item gold" href="#/category/case"><span class="hx-ic">📦</span><span class="hx-label">Gaming Cases</span><span class="hx-count" data-count="case">15+ Products</span></a>
-      <a class="hex-item glow" href="#/category/cooler"><span class="hx-ic">❄️</span><span class="hx-label">CPU Coolers</span><span class="hx-count" data-count="cooler">14+ Products</span></a>
-      <a class="hex-item gold" href="#/category/fans"><span class="hx-ic">🌀</span><span class="hx-label">ARGB Fans</span><span class="hx-count" data-count="fans">10+ Products</span></a>
-      <a class="hex-item glow" href="#/category/monitor"><span class="hx-ic">🖥️</span><span class="hx-label">Monitors</span><span class="hx-count" data-count="monitor">12+ Products</span></a>
-      <a class="hex-item gold" href="#/category/keyboard"><span class="hx-ic">⌨️</span><span class="hx-label">Keyboards</span><span class="hx-count" data-count="keyboard">8+ Products</span></a>
-      <a class="hex-item glow" href="#/category/mouse"><span class="hx-ic">🖱️</span><span class="hx-label">Mouse</span><span class="hx-count" data-count="mouse">10+ Products</span></a>
-      <a class="hex-item gold" href="#/category/headphones"><span class="hx-ic">🎧</span><span class="hx-label">Headphones</span><span class="hx-count" data-count="headphones">9+ Products</span></a>
-      <a class="hex-item glow" href="#/category/chair"><span class="hx-ic">🪑</span><span class="hx-label">Gaming Chairs</span><span class="hx-count" data-count="chair">6+ Products</span></a>
-      <a class="hex-item gold" href="#/category/webcam"><span class="hx-ic">📷</span><span class="hx-label">Webcams</span><span class="hx-count" data-count="webcam">4+ Products</span></a>
-      <a class="hex-item glow" href="#/category/speakers"><span class="hx-ic">🔊</span><span class="hx-label">Speakers</span><span class="hx-count" data-count="speakers">5+ Products</span></a>
+      <a class="hex-item gold" href="#/category/gpu"><span class="hx-ic">🎮</span><span class="hx-label">Graphics Cards</span></a>
+      <a class="hex-item glow" href="#/category/cpu"><span class="hx-ic">🧠</span><span class="hx-label">Processors</span></a>
+      <a class="hex-item gold" href="#/category/motherboard"><span class="hx-ic">🔗</span><span class="hx-label">Motherboards</span></a>
+      <a class="hex-item glow" href="#/category/ram"><span class="hx-ic">💾</span><span class="hx-label">RAM</span></a>
+      <a class="hex-item gold" href="#/category/storage"><span class="hx-ic">🗄️</span><span class="hx-label">Storage / SSD</span></a>
+      <a class="hex-item glow" href="#/category/psu"><span class="hx-ic">🔌</span><span class="hx-label">Power Supplies</span></a>
+      <a class="hex-item gold" href="#/category/case"><span class="hx-ic">📦</span><span class="hx-label">Gaming Cases</span></a>
+      <a class="hex-item glow" href="#/category/cooler"><span class="hx-ic">❄️</span><span class="hx-label">CPU Coolers</span></a>
+      <a class="hex-item gold" href="#/category/fans"><span class="hx-ic">🌀</span><span class="hx-label">ARGB Fans</span></a>
+      <a class="hex-item glow" href="#/category/monitor"><span class="hx-ic">🖥️</span><span class="hx-label">Monitors</span></a>
+      <a class="hex-item gold" href="#/category/keyboard"><span class="hx-ic">⌨️</span><span class="hx-label">Keyboards</span></a>
+      <a class="hex-item glow" href="#/category/mouse"><span class="hx-ic">🖱️</span><span class="hx-label">Mouse</span></a>
+      <a class="hex-item gold" href="#/category/headphones"><span class="hx-ic">🎧</span><span class="hx-label">Headphones</span></a>
+      <a class="hex-item glow" href="#/category/chair"><span class="hx-ic">🪑</span><span class="hx-label">Gaming Chairs</span></a>
+      <a class="hex-item gold" href="#/category/webcam"><span class="hx-ic">📷</span><span class="hx-label">Webcams</span></a>
+      <a class="hex-item glow" href="#/category/speakers"><span class="hx-ic">🔊</span><span class="hx-label">Speakers</span></a>
     </div>
   </section>
 
@@ -692,10 +692,10 @@
       <p>PS4, PS5, controllers, and every console accessory you need — all in stock at the shop.</p>
     </div>
     <div class="hex-grid reveal">
-      <a class="hex-item gold" href="#/category/ps5"><span class="hx-ic">🎮</span><span class="hx-label">PS5 Series</span><span class="hx-count">DM for Price</span></a>
-      <a class="hex-item glow" href="#/category/ps4"><span class="hx-ic">🎮</span><span class="hx-label">PS4 Series</span><span class="hx-count">DM for Price</span></a>
-      <a class="hex-item gold" href="#/category/controllers"><span class="hx-ic">🕹️</span><span class="hx-label">Controllers</span><span class="hx-count">DM for Price</span></a>
-      <a class="hex-item glow" href="#/category/accessories"><span class="hx-ic">🔌</span><span class="hx-label">Accessories</span><span class="hx-count">DM for Price</span></a>
+      <a class="hex-item gold" href="#/category/ps5"><span class="hx-ic">🎮</span><span class="hx-label">PS5 Series</span></a>
+      <a class="hex-item glow" href="#/category/ps4"><span class="hx-ic">🎮</span><span class="hx-label">PS4 Series</span></a>
+      <a class="hex-item gold" href="#/category/controllers"><span class="hx-ic">🕹️</span><span class="hx-label">Controllers</span></a>
+      <a class="hex-item glow" href="#/category/accessories"><span class="hx-ic">🔌</span><span class="hx-label">Accessories</span></a>
     </div>
   </section>
 
