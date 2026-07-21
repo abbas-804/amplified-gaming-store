@@ -520,6 +520,13 @@
   .pd-specs li::before{
     content:"◆"; position:absolute; left:0; top:1px; color:var(--gold); font-size:10px;
   }
+  .pd-highlights{ margin-top:28px; padding-top:24px; border-top:1px solid var(--line); }
+  .pd-highlights h4{
+    font-family:'Anton',sans-serif; text-transform:uppercase; font-size:15px; color:var(--gold); margin:0 0 14px;
+  }
+  .pd-highlights ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px; }
+  .pd-highlights li{ font-size:13.5px; line-height:1.65; color:var(--paper-dim); }
+  .pd-highlights li strong{ color:var(--paper); font-weight:700; }
   .pd-action{ max-width:260px; }
 
   .wa-float{
@@ -557,7 +564,6 @@
     <button class="icon-btn cart-btn" id="cartToggle" aria-label="View cart">
       🛒<span class="cart-badge" id="cartBadge">0</span>
     </button>
-    <a class="cta-btn" href="https://wa.me/923340518175" target="_blank" rel="noopener">DM for Quote →</a>
   </div>
 </header>
 
@@ -640,30 +646,6 @@
     </div>
   </section>
 
-  <section id="featured" style="padding-top:0;">
-    <div class="featured-wrap reveal">
-      <div class="badge-orb">
-        <div class="rank"><span class="n">01</span><span class="t">BUILD OF<br>THE MONTH</span></div>
-      </div>
-      <div class="featured-copy">
-        <span class="featured-badge">⚡ Featured this month</span>
-        <h3>The Storm — 1440p Streaming Rig</h3>
-        <p>Our most-requested build this month — tuned for smooth 1440p gaming and streaming at the same time, with clean RGB airflow and zero thermal throttling.</p>
-        <div class="spec-row">
-          <span class="spec-chip"><b>GPU</b> RTX 4060</span>
-          <span class="spec-chip"><b>CPU</b> Ryzen 5 7600</span>
-          <span class="spec-chip"><b>RAM</b> 16GB DDR5</span>
-          <span class="spec-chip"><b>Storage</b> 1TB NVMe</span>
-        </div>
-        <div class="price-tag">
-          <span class="amount">Rs. 185,000</span>
-          <span class="label">/ starting price, customizable</span>
-        </div>
-        <a class="cta-btn" href="https://wa.me/923340518175" target="_blank" rel="noopener">Ask About This Build →</a>
-      </div>
-    </div>
-  </section>
-
   <section id="parts" style="padding-top:0;">
     <div class="section-head reveal">
       <span class="kicker">Every part, one shop</span>
@@ -701,6 +683,30 @@
       <a class="hex-item glow" href="#/category/ps4"><span class="hx-ic">🎮</span><span class="hx-label">PS4 Series</span><span class="hx-count">DM for Price</span></a>
       <a class="hex-item gold" href="#/category/controllers"><span class="hx-ic">🕹️</span><span class="hx-label">Controllers</span><span class="hx-count">DM for Price</span></a>
       <a class="hex-item glow" href="#/category/accessories"><span class="hx-ic">🔌</span><span class="hx-label">Accessories</span><span class="hx-count">DM for Price</span></a>
+    </div>
+  </section>
+
+  <section id="featured" style="padding-top:0;">
+    <div class="featured-wrap reveal">
+      <div class="badge-orb">
+        <div class="rank"><span class="n">01</span><span class="t">BUILD OF<br>THE MONTH</span></div>
+      </div>
+      <div class="featured-copy">
+        <span class="featured-badge">⚡ Featured this month</span>
+        <h3>The Storm — 1440p Streaming Rig</h3>
+        <p>Our most-requested build this month — tuned for smooth 1440p gaming and streaming at the same time, with clean RGB airflow and zero thermal throttling.</p>
+        <div class="spec-row">
+          <span class="spec-chip"><b>GPU</b> RTX 4060</span>
+          <span class="spec-chip"><b>CPU</b> Ryzen 5 7600</span>
+          <span class="spec-chip"><b>RAM</b> 16GB DDR5</span>
+          <span class="spec-chip"><b>Storage</b> 1TB NVMe</span>
+        </div>
+        <div class="price-tag">
+          <span class="amount">Rs. 185,000</span>
+          <span class="label">/ starting price, customizable</span>
+        </div>
+        <a class="cta-btn" href="https://wa.me/923340518175" target="_blank" rel="noopener">Ask About This Build →</a>
+      </div>
     </div>
   </section>
 
@@ -854,6 +860,14 @@
         'AM5 socket with support for faster DDR5 memory and PCIe 4.0',
         '65W TDP — runs cool and doesn\'t need heavy-duty cooling',
         'No integrated graphics, so a dedicated graphics card is required'
+      ],
+      highlights:[
+        { label:'High-Performance Core Count', text:'Features 8 cores and 16 processing threads, easily handling CPU-heavy games while streaming or running background apps.' },
+        { label:'Blistering Clock Speeds', text:'Delivers a base clock of 4.1 GHz with a max boost up to 5.0 GHz, plus an unlocked multiplier for easy overclocking.' },
+        { label:'Next-Gen AM5 Platform', text:'Supports state-of-the-art DDR5 memory and is built for the AM5 socket, ensuring your system is easily upgradable for years.' },
+        { label:'Dedicated AI Engine', text:'Equipped with built-in Ryzen AI (up to 16 TOPS) to accelerate supported AI productivity workloads, background noise reduction, and smart streaming features.' },
+        { label:'Pure Gaming Focus', text:'The "F" series does not have an integrated GPU, making it the perfect budget pairing for a dedicated graphics card.' },
+        { label:'Power Efficient', text:'Operates at a standard 65W TDP, keeping thermal output low and performance highly efficient.' }
       ] },
     { id:'cpu-3700x', cat:'cpu', name:'AMD Ryzen 7 3700X', desc:'8-core / 16-thread processor — reliable performer for solid 1080p/1440p gaming rigs.', price:30000, img:'assets/cpu-ryzen7-3700x.webp', brand:'AMD',
       specs:[
@@ -863,6 +877,14 @@
         'AM4 socket with dual-channel DDR4-3200 memory support and PCIe 4.0 on a compatible board',
         '65W TDP, and ships with AMD\'s Wraith Prism RGB cooler included',
         'No integrated graphics, so a dedicated graphics card is required'
+      ],
+      highlights:[
+        { label:'Strong Multi-Core Performance', text:'8 cores and 16 threads handle demanding games, streaming, and background multitasking with ease.' },
+        { label:'Reliable Clock Speeds', text:'Runs at a 3.6 GHz base clock, boosting up to 4.4 GHz, with an unlocked multiplier for overclocking headroom.' },
+        { label:'Proven AM4 Platform', text:'Built for the widely-supported, budget-friendly AM4 socket with dual-channel DDR4-3200 memory support.' },
+        { label:'Generous Game Cache', text:'A large 32MB L3 "Game Cache" helps deliver smoother, more consistent in-game frame rates.' },
+        { label:'Cooler Included', text:'Ships with AMD\'s Wraith Prism RGB cooler in the box, so there\'s no need to buy one separately to get started.' },
+        { label:'Power Efficient', text:'Operates at a standard 65W TDP, keeping temperatures and power draw low.' }
       ] },
     { id:'cpu-3500x', cat:'cpu', name:'AMD Ryzen 5 3500X', desc:'6-core processor — great value pick for budget and mid-range gaming builds.', price:15500, img:'assets/cpu-ryzen5-3500x.webp', brand:'AMD',
       specs:[
@@ -872,6 +894,14 @@
         'AM4 socket with dual-channel DDR4-3200 memory support',
         '65W TDP with an unlocked multiplier, so it\'s overclocking-friendly',
         'No integrated graphics, so a dedicated graphics card is required'
+      ],
+      highlights:[
+        { label:'Reliable Six-Core Performance', text:'6 cores and 6 threads make this a great match for everyday gaming and general desktop use.' },
+        { label:'Solid Clock Speeds', text:'Runs at a 3.6 GHz base clock, boosting up to 4.1 GHz for snappy performance in games and apps.' },
+        { label:'Proven AM4 Platform', text:'Built for the widely-supported, budget-friendly AM4 socket with dual-channel DDR4-3200 memory support.' },
+        { label:'Roomy Cache', text:'Comes with 32MB of L3 cache for its class, helping keep data access quick and responsive.' },
+        { label:'Overclocking Friendly', text:'Includes an unlocked multiplier, so enthusiasts can push extra performance with the right cooling.' },
+        { label:'Power Efficient', text:'Operates at a standard 65W TDP, keeping thermal output low and efficient.' }
       ] },
     { id:'console-ps5', cat:'ps5', name:'PlayStation 5 Series', desc:'PS5 Standard and Slim/Digital editions — ask in-store for current bundle and controller options.', price:null, img:null, icon:'🎮', brand:'Sony' },
     { id:'console-ps4', cat:'ps4', name:'PlayStation 4 Series', desc:'PS4 Slim and Pro editions — reliable last-gen consoles with a huge game library.', price:null, img:null, icon:'🎮', brand:'Sony' },
@@ -996,6 +1026,9 @@
     const specsHTML = p.specs && p.specs.length
       ? `<ul class="pd-specs">${p.specs.map(s => `<li>${s}</li>`).join('')}</ul>`
       : '';
+    const highlightsHTML = p.highlights && p.highlights.length
+      ? `<div class="pd-highlights"><h4>Why You'll Love It</h4><ul>${p.highlights.map(h => `<li><strong>${h.label}:</strong> ${h.text}</li>`).join('')}</ul></div>`
+      : '';
     shopView.innerHTML = `
       <div class="shop-head">
         <a class="back-link" href="#${p.cat ? '/category/' + p.cat : 'top'}">← Back to ${CATEGORY_META[p.cat]?.label || 'Home'}</a>
@@ -1009,6 +1042,7 @@
           <p class="pd-desc">${p.desc}</p>
           ${specsHTML}
           ${action}
+          ${highlightsHTML}
         </div>
       </div>`;
   }
